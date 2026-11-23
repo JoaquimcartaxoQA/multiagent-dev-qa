@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "simulation": true,
+  "runId": "demo-form-001",
+  "item": {
+    "id": "FORM-01",
+    "title": "Validar data em formulário",
+    "status": "validado_na_simulacao",
+    "currentAttempt": "v2"
+  },
+  "agents": [
+    {
+      "id": "dev-01",
+      "role": "Dev",
+      "task": "Corrigir a validação de data",
+      "status": "v2 entregue"
+    },
+    {
+      "id": "qa-01",
+      "role": "QA",
+      "task": "Retestar o cenário 31/02",
+      "status": "v2 aprovada"
+    }
+  ],
+  "events": [
+    {
+      "runId": "demo-form-001",
+      "eventId": "evt-01",
+      "timestamp": "2026-11-23T14:00:00Z",
+      "agent": "dev-01",
+      "role": "Dev",
+      "type": "entrega",
+      "attempt": "v1",
+      "title": "Entrega inicial",
+      "description": "Validação de data enviada para QA.",
+      "evidence": null
+    },
+    {
+      "runId": "demo-form-001",
+      "eventId": "evt-02",
+      "timestamp": "2026-11-23T14:04:00Z",
+      "agent": "qa-01",
+      "role": "QA",
+      "type": "teste",
+      "attempt": "v1",
+      "title": "Teste falhou",
+      "description": "O formulário aceitou uma data impossível.",
+      "evidence": {
+        "input": "31/02",
+        "expected": "Bloquear 31/02 e exibir “Data inválida”.",
+        "actual": "Data 31/02 aceita sem aviso.",
+        "result": "falhou"
+      }
+    },
+    {
+      "runId": "demo-form-001",
+      "eventId": "evt-03",
+      "timestamp": "2026-11-23T14:08:00Z",
+      "agent": "dev-01",
+      "role": "Dev",
+      "type": "correcao",
+      "attempt": "v2",
+      "title": "Correção entregue",
+      "description": "Validação de calendário adicionada.",
+      "evidence": null
+    },
+    {
+      "runId": "demo-form-001",
+      "eventId": "evt-04",
+      "timestamp": "2026-11-23T14:12:00Z",
+      "agent": "qa-01",
+      "role": "QA",
+      "type": "reteste",
+      "attempt": "v2",
+      "title": "Reteste passou",
+      "description": "O formulário bloqueou a data inválida.",
+      "evidence": {
+        "input": "31/02",
+        "expected": "Bloquear 31/02 e exibir “Data inválida”.",
+        "actual": "Envio bloqueado; aviso “Data inválida”.",
+        "result": "passou"
+      }
+    }
+  ]
+}
